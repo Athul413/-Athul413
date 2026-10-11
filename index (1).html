@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: black;
+    }
+  </style>
+</head>
+<body>
+
+  <video id="video" src="video.mp4" playsinline></video>
+
+  <script>
+    const video = document.getElementById("video");
+
+    document.addEventListener("keydown", async (event) => {
+      if (event.key.toLowerCase() !== "k" || event.repeat) return;
+
+      try {
+        await video.play();
+
+        if (!document.fullscreenElement) {
+          await document.documentElement.requestFullscreen();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
+
+</body>
+</html>
